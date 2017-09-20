@@ -3,8 +3,8 @@
  * @Author : ADISH M R
  * @About  : A program to display the Full month calendar or a single month of
  *           the given year.I found this calculation and logic in many calendar
- *           programs in the internet and I write this program by referring
- *           that.Input validation is not done.
+ *           programs in the internet and I wrote this program by referring
+ *           those.
  *****************************************************************************/
 #include<stdio.h>
 
@@ -12,6 +12,7 @@
 char *months[]={" ","January","February","March","April","May","June","July",
     "August","September","October","November","December"};
 char choice;
+int countdown = 3;
 int days[]={0,31,28,31,30,31,30,31,31,30,31,30,31};/*no.of days in each month*/
 
 int main(void)
@@ -37,15 +38,23 @@ int main(void)
     scanf(" %c",&choice);
 
     if(choice == 'n') {
-        printf("Please enter the Month number: ");
+    retry:printf("Please enter the Month number: ");
         scanf("%d",&cmonth);
+        if (cmonth <= 0 ||cmonth >12) {    /* months starting from 1 to 12 */
+            if(!(countdown--)) {         /* for setting a max no.of retry */
+                printf("!! sorry try again...\nclosing...!\n");
+                return 0;       /* after all chances used, exit */
+            }
+            printf("Please  enter a valid month number (1-12)\n");
+            goto retry; /*give a chance to re-enter month number */
+        }
     }
     else{
         cmonth = 0;         /* this is for printing all the months */
     }
     month=cmonth;
     all=cmonth;
-    printf("\n        Year %d Calender       \n"
+    printf("\n        Year %d Calendar       \n"
             "*********************************\n",year);
     for(month=0;month<=12;month++)
     {
