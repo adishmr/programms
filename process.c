@@ -27,7 +27,7 @@ int main()
     }
 
     printf("Printing the numbers from 1 to 10 using %s process\n",(pid > 0? "parent":"child") );
-    printf("Process id : %d\n",pid);
+    printf("Process id : %d\n",getpid());
     for(i = 1; i <= 10; i++) {
         printf("%d ",i);
     }
