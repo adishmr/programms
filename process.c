@@ -25,7 +25,10 @@ int main()
 
         return 0;
     }
-
+    /* Note that, here pid means the return value of fork(), if it is a child process
+     * fork () will return 0. but this doesn't mean that child process ID is 0.
+     * child process ID is the next ID to parent process. For that we use getpid()
+     */
     printf("Printing the numbers from 1 to 10 using %s process\n",(pid > 0? "parent":"child") );
     printf("Process id : %d\n",getpid());
     for(i = 1; i <= 10; i++) {
